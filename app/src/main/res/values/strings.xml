@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CarRentalProject</string>
+    <string name="go_to_admin_page">Go To Admin Page</string>
+    <string name="go_to_customer_page">Go To Customer Page</string>
+</resources>
