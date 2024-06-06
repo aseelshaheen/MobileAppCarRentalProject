@@ -13,6 +13,12 @@
         android:theme="@style/Theme.CarRentalProject"
         tools:targetApi="31">
         <activity
+            android:name=".SignUpAdminScreen"
+            android:exported="false" />
+        <activity
+            android:name=".AdminScreen"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

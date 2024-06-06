@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpAdminScreen">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="30dp"
+        android:text="Sign up a new admin"
+        android:textColor="#015593"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="150dp"
+        android:ems="10"
+        android:hint="Enter Username"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/adminemail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Enter E-Mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/edtTxtPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/adminemail"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Enter Password"
+        android:inputType="numberPassword" />
+
+    <Button
+        android:id="@+id/btnAdminSignUp"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtTxtPassword"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="75dp"
+        android:text="Sign Up" />
+
+
+</RelativeLayout>

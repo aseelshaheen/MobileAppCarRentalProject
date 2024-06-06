@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminScreen">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="30dp"
+        android:text="Admin Screen"
+        android:textColor="#015593"
+        android:textSize="30dp" />
+
+
+    <Button
+        android:id="@+id/btnAdminLogin"
+        android:layout_width="203dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="250dp"
+        android:text="Login" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnAdminLogin"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="37dp"
+        android:text="Or, To enter a new Admin,Press the button below"
+        android:textColor="#015593"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/btnAdminSignUp"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView4"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="15dp"
+        android:text="Sign Up" />
+
+    <EditText
+        android:id="@+id/edtTxtPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="120dp"
+        android:ems="10"
+        android:hint="Enter Phone Number"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edtTxtPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtTxtPhone"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="Enter Password"
+        android:inputType="numberPassword" />
+
+
+
+
+</RelativeLayout>
