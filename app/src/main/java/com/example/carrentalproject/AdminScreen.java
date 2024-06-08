@@ -2,6 +2,7 @@ package com.example.carrentalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +36,7 @@ public class AdminScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_screen);
         setupViews();
-        GoToSignUpScreen();
+        goToSignUpScreen();
 
         btnAdminLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +53,7 @@ public class AdminScreen extends AppCompatActivity {
         edtTxtPassword = findViewById(R.id.edtTxtPassword);
     }
 
-    public void GoToSignUpScreen() {
+    public void goToSignUpScreen() {
         btnAdminSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,15 +64,23 @@ public class AdminScreen extends AppCompatActivity {
     }
 
     private void adminLogin() {
-        String url = "http://127.0.0.1/CarRental/AdminLogin.php";
-
-        // Get the username and password from the EditText fields
         final String username = edtTxtUsername.getText().toString().trim();
         final String password = edtTxtPassword.getText().toString().trim();
+
+        // Check if the username or password fields are empty
+        if (username.isEmpty() || password.isEmpty()) {
+            Toast.makeText(AdminScreen.this, "Please enter both username and password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String url = "http://192.168.1.3:80/CarRental/AdminLogin.php";
+
+        Log.d("AdminLogin", "URL: " + url);  // Log the URL for debugging
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.d("AdminLogin", "Response: " + response);  // Log the response for debugging
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String status = jsonObject.getString("status");
@@ -85,6 +94,10 @@ public class AdminScreen extends AppCompatActivity {
                     } else {
                         // Display error message
                         Toast.makeText(AdminScreen.this, message, Toast.LENGTH_SHORT).show();
+                        if (message.contains("Please sign up")) {
+                            Intent intent = new Intent(AdminScreen.this, SignUpAdminScreen.class);
+                            startActivity(intent);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -111,6 +124,4 @@ public class AdminScreen extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
-
 }
