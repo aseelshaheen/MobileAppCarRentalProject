@@ -6,15 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".AddCarScreen">
+    tools:context=".UpdateCarScreen">
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/add_a_new_car"
-        android:layout_marginStart="70dp"
+        android:text="@string/update_car_s_details"
+        android:layout_marginStart="50dp"
         style="@style/CustomTextStyle"
         android:textSize="30sp" />
 
@@ -62,7 +62,7 @@
         android:hint="@string/select_status" />
 
     <Button
-        android:id="@+id/buttonInsertImage"
+        android:id="@+id/buttonUpdateImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinnerStatus"
@@ -70,10 +70,10 @@
         android:text="@string/insert_image" />
 
     <Button
-        android:id="@+id/buttonInsertCar"
+        android:id="@+id/buttonUpdateCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonInsertImage"
+        android:layout_below="@id/buttonUpdateImage"
         android:layout_marginStart="100dp"
         android:layout_marginTop="51dp"
         android:text="@string/insert_car" />

@@ -49,13 +49,13 @@
         android:text="@string/sign_up1" />
 
     <EditText
-        android:id="@+id/edtTxtPhone"
+        android:id="@+id/edtTxtID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="120dp"
         android:ems="10"
-        android:hint="@string/enter_phone_number"
+        android:hint="@string/enter_id_number"
         android:inputType="phone"
         tools:ignore="TextFields"
         android:autofillHints="" />
@@ -64,7 +64,7 @@
         android:id="@+id/edtTxtPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edtTxtPhone"
+        android:layout_below="@+id/edtTxtID"
         android:layout_marginStart="100dp"
         android:layout_marginTop="19dp"
         android:ems="10"

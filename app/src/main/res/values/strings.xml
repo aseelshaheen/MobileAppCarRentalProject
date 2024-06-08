@@ -24,4 +24,7 @@
     <string name="select_status">Select Status</string>
     <string name="insert_image">Insert Image</string>
     <string name="enter_color">Enter Color</string>
+    <string name="enter_id_number">Enter ID Number</string>
+    <string name="insert_car">Insert Car</string>
+    <string name="update_car_s_details">Update Car\'s Details</string>
 </resources>

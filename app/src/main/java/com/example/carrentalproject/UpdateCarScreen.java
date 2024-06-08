@@ -1,5 +1,4 @@
 package com.example.carrentalproject;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -29,6 +28,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -52,7 +52,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AddCarScreen extends AppCompatActivity {
+public class UpdateCarScreen extends AppCompatActivity {
 
     private TextView textViewTitle;
     private Spinner spinnerCarBrand;
@@ -60,8 +60,8 @@ public class AddCarScreen extends AppCompatActivity {
     private EditText editTextCarModel;
     private EditText editTextPrice;
     private EditText editTextColor;
-    private Button buttonInsertImage;
-    private Button buttonInsertCar;
+    private Button buttonUpdateImage;
+    private Button buttonUpdateCar;
     private String imagePath = null;
 
     @Override
@@ -74,16 +74,24 @@ public class AddCarScreen extends AppCompatActivity {
         setupViews();
         populateSpinners();
 
-        buttonInsertImage.setOnClickListener(new View.OnClickListener() {
+        buttonUpdateImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chooseImage();
             }
         });
-        buttonInsertCar.setOnClickListener(new View.OnClickListener() {
+        buttonUpdateCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addCar();
+                String newCarBrand = spinnerCarBrand.getSelectedItem().toString();
+                String newCarModel = editTextCarModel.getText().toString();
+                int newPrice = Integer.parseInt(editTextPrice.getText().toString().trim());
+                String newColor = editTextColor.getText().toString();
+                String newStatus = spinnerStatus.getSelectedItem().toString();
+                String newImagePath = imagePath;
+
+                Car car = new Car(newCarBrand, newCarModel, newPrice, newColor, newStatus,newImagePath);
+                updateCar(car);
             }
         });
     }
@@ -97,13 +105,13 @@ public class AddCarScreen extends AppCompatActivity {
         editTextCarModel = findViewById(R.id.editTextCarModel);
         editTextPrice = findViewById(R.id.editTextPrice);
         editTextColor = findViewById(R.id.editTextColor);
-        buttonInsertImage = findViewById(R.id.buttonInsertImage);
-        buttonInsertCar = findViewById(R.id.buttonInsertCar);
+        buttonUpdateImage = findViewById(R.id.buttonUpdateImage);
+        buttonUpdateCar = findViewById(R.id.buttonUpdateCar);
 
         // Verify if views are properly initialized
         if (textViewTitle == null || spinnerCarBrand == null || spinnerStatus == null ||
                 editTextCarModel == null || editTextPrice == null || editTextColor == null ||
-                buttonInsertImage == null || buttonInsertCar == null) {
+                buttonUpdateImage == null || buttonUpdateCar == null) {
             Log.e("AddCarScreen", "One or more views are not properly initialized");
         }
     }
@@ -158,45 +166,44 @@ public class AddCarScreen extends AppCompatActivity {
         return uri.getPath();
     }
 
-    public void addCar() {
-        // Get user input and create Car object
-        String carModel = editTextCarModel.getText().toString();
-        int price = Integer.parseInt(editTextPrice.getText().toString().trim());
-        String color = editTextColor.getText().toString();
-        String carBrand = spinnerCarBrand.getSelectedItem().toString();
-        String status = spinnerStatus.getSelectedItem().toString();
-
+    public void updateCar(Car car) {
         String url = "http://192.168.1.3:80/CarRental/AddNewCar.php";
 
         // Create request queue for Volley
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        Map<String, String> params = new HashMap<>();
-        params.put("carBrand", carBrand);
-        params.put("carModel", carModel);
-        params.put("price", String.valueOf(price));
-        params.put("color", color);
-        params.put("status", status);
+        // Create JSON object with car data
+        JSONObject jsonCar = new JSONObject();
+        try {
+            jsonCar.put("carID", car.getCarID());
+            jsonCar.put("carBrand", car.getCarBrand());
+            jsonCar.put("carModel", car.getCarModel());
+            jsonCar.put("price", car.getPrice());
+            jsonCar.put("color", car.getColor());
+            jsonCar.put("status", car.getStatus());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(AddCarScreen.this, "Car inserted successfully", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(AddCarScreen.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                return params;
-            }
-        };
+        // Create a JSON object request
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonCar,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle response
+                        Toast.makeText(UpdateCarScreen.this, "Car record updated successfully", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(UpdateCarScreen.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         // Add the request to the request queue
-        requestQueue.add(stringRequest);
+        requestQueue.add(jsonObjectRequest);
     }
+
 
 }

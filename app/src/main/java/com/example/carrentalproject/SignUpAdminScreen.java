@@ -2,6 +2,7 @@ package com.example.carrentalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class SignUpAdminScreen extends AppCompatActivity {
     private EditText username;
     private EditText adminemail;
     private EditText edtTxtPassword;
-    private Button btncustomerSignUp;
+    private Button btnAdminSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +42,19 @@ public class SignUpAdminScreen extends AppCompatActivity {
 
         // Call setupView to initialize the UI components
         setupView();
+        btnAdminSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signUpAdmin();
+            }
+        });
     }
 
     private void setupView() {
         username = findViewById(R.id.username);
         adminemail = findViewById(R.id.adminemail);
         edtTxtPassword = findViewById(R.id.edtTxtPassword);
-        btncustomerSignUp = findViewById(R.id.btncustomerSignUp);
+        btnAdminSignUp = findViewById(R.id.btncustomerSignUp);
     }
 
     private void signUpAdmin() {
