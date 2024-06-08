@@ -2,4 +2,26 @@
     <string name="app_name">CarRentalProject</string>
     <string name="go_to_admin_page">Go To Admin Page</string>
     <string name="go_to_customer_page">Go To Customer Page</string>
+    <string name="sign_up_a_new_admin">Sign up a new admin</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_e_mail">Enter E-Mail</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or_to_enter_a_new_admin_press_the_button_below">Or, To enter a new Admin,Press the button below</string>
+    <string name="sign_up1">Sign Up</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="enter_password2">Enter Password</string>
+    <string name="admin_screen">Admin Screen</string>
+    <string name="login">Login</string>
+    <string name="customer_screen">Customer Screen</string>
+    <string name="enter_first_name">Enter First Name</string>
+    <string name="enter_last_name">Enter Last Name</string>
+    <string name="customer_sign_up">Customer Sign up</string>
+    <string name="add_a_new_car">Add A New Car</string>
+    <string name="select_car_brand">Select Car Brand</string>
+    <string name="enter_car_model">Enter Car Model</string>
+    <string name="enter_price">Enter Price</string>
+    <string name="select_status">Select Status</string>
+    <string name="insert_image">Insert Image</string>
+    <string name="enter_color">Enter Color</string>
 </resources>

@@ -13,31 +13,53 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="30dp"
-        android:text="@string/sign_up_a_new_admin"
+        android:text="@string/customer_sign_up"
         style="@style/CustomTextStyle"
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/PhoneNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/LastName"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="35dp"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="@string/enter_username"
-        android:inputType="text"
-        android:autofillHints="" />
+        android:hint="@string/enter_phone_number"
+        android:inputType="phone" />
 
     <EditText
         android:id="@+id/adminemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
+        android:layout_below="@+id/PhoneNum"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="26dp"
         android:ems="10"
         android:hint="@string/enter_e_mail"
         android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/FirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="180dp"
+        android:ems="10"
+        android:hint="@string/enter_first_name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/LastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FirstName"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/enter_last_name"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/edtTxtPassword"
@@ -45,21 +67,21 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/adminemail"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/enter_password"
-        android:inputType="numberPassword"
-        android:autofillHints="" />
+        android:inputType="numberPassword" />
 
     <Button
         android:id="@+id/btncustomerSignUp"
+        style="@style/CustomButton"
         android:layout_width="204dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/edtTxtPassword"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="75dp"
-        android:text="@string/sign_up"
-        style="@style/CustomButton"/>
+        android:layout_marginTop="50dp"
+        android:text="@string/sign_up" />
 
 
 </RelativeLayout>
