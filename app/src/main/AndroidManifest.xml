@@ -18,6 +18,9 @@
         android:theme="@style/Theme.CarRentalProject"
         tools:targetApi="31">
         <activity
+            android:name=".CarViewScreen"
+            android:exported="false" />
+        <activity
             android:name=".UpdateCarScreen"
             android:exported="false" />
         <activity
