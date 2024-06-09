@@ -2,7 +2,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/btnSearch"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CarViewScreen"/>
+    tools:context=".CarViewScreen">
+
+
+    <Spinner
+        android:id="@+id/spinnerCarBrand"
+        style="@style/CustomTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:hint="@string/select_car_brand" />
+
+    <EditText
+        android:id="@+id/editTextCarModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/spinnerCarBrand"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="30dp"
+        android:hint="@string/enter_car_model" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/CustomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/editTextCarModel"
+        android:layout_marginLeft="159dp"
+        android:layout_marginTop="30dp"
+        android:text="Search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcViewCars"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/spinnerCarBrand"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="51dp" />
+
+
+</RelativeLayout>
+

@@ -22,6 +22,12 @@ public class Car {
 
     }
 
+    public Car(String brand, String model, String imageUrl) {
+        this.carBrand = carBrand;
+        this.carModel = carModel;
+        this.imagePath = imagePath;
+    }
+
     public String getCarBrand() {
         return carBrand;
     }
