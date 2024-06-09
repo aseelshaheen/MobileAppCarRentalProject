@@ -7,53 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".AdminScreen">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/logo" />
+
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/customer_screen"
-        style="@style/CustomTextStyle"
-        android:textSize="30sp" />
-
-
-    <Button
-        android:id="@+id/btnCustomerLogin"
-        android:layout_width="203dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="250dp"
-        style="@style/CustomButton"
-        android:text="@string/login" />
-
-    <TextView
-        android:id="@+id/textView4"
         style="@style/CustomTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnCustomerLogin"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="65dp"
-        android:text="Or, If you do not have an account"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/btncustomerSignUp"
-        style="@style/CustomButton"
-        android:layout_width="204dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView4"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="13dp"
-        android:text="@string/sign_up1" />
+        android:layout_below="@id/imageView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/customer_screen" />
 
     <EditText
         android:id="@+id/edtTxtID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="120dp"
+        android:layout_below="@id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="@string/enter_id_number"
         android:inputType="phone"
@@ -64,13 +41,43 @@
         android:id="@+id/edtTxtPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edtTxtID"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="19dp"
+        android:layout_below="@id/edtTxtID"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/enter_password2"
         android:inputType="numberPassword"
         android:autofillHints="" />
 
+    <Button
+        android:id="@+id/btnCustomerLogin"
+        android:layout_width="203dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtTxtPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        style="@style/CustomButton"
+        android:text="@string/login" />
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/CustomTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnCustomerLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Or, If you do not have an account"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btncustomerSignUp"
+        style="@style/CustomButton"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/sign_up1" />
 
 </RelativeLayout>

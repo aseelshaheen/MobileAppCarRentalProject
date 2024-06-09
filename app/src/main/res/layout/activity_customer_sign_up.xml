@@ -7,15 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".SignUpAdminScreen">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/logo" />
+
     <TextView
         android:id="@+id/textView"
+        style="@style/CustomTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/customer_sign_up"
-        style="@style/CustomTextStyle"
-        android:textSize="30sp" />
+        android:layout_below="@id/imageView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/customer_sign_up" />
 
     <EditText
         android:id="@+id/PhoneNum"

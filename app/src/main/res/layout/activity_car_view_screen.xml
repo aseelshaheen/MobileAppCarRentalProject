@@ -34,7 +34,8 @@
         android:layout_alignLeft="@id/editTextCarModel"
         android:layout_marginLeft="159dp"
         android:layout_marginTop="120dp"
-        android:text="Search" />
+        android:text="Apply Filter
+" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcViewCars"
@@ -57,14 +58,13 @@
 
     <TextView
         android:id="@+id/adminName"
+        style="@style/CustomTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="you are signed in as"
-        style="@style/CustomTextStyle"
         android:layout_below="@id/txtTitle"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
-        />
+        android:layout_marginTop="21dp"
+        android:text="you are signed in as" />
 
     <Button
         android:id="@+id/btnAdd"

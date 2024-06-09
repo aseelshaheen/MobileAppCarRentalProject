@@ -132,8 +132,6 @@ public class AddCarScreen extends AppCompatActivity {
         mGetContentLauncher.launch("image/*");
     }
 
-
-
     private ActivityResultLauncher<String> mGetContentLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
@@ -141,6 +139,7 @@ public class AddCarScreen extends AppCompatActivity {
                     // Handle the selected image URI
                     if (uri != null) {
                         imagePath = getPathFromUri(uri);
+                        Toast.makeText(AddCarScreen.this, "Image selected successfully", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -198,5 +197,5 @@ public class AddCarScreen extends AppCompatActivity {
         // Add the request to the request queue
         requestQueue.add(stringRequest);
     }
-
 }
+

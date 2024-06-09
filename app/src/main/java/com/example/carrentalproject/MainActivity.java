@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btnAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CarViewScreen.class);
+                Intent intent = new Intent(MainActivity.this, AdminScreen.class);
                 startActivity(intent);
             }
         });

@@ -8,15 +8,22 @@
     android:padding="20dp"
     tools:context=".AddCarScreen">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/logo" />
+
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/textView"
+        style="@style/CustomTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/add_a_new_car"
-        android:layout_marginStart="70dp"
-        style="@style/CustomTextStyle"
-        android:textSize="30sp" />
+        android:text="@string/add_a_new_car"/>
 
 
     <Spinner
@@ -24,7 +31,7 @@
         style="@style/CustomTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewTitle"
+        android:layout_below="@id/textView"
         android:layout_marginTop="100dp"
         android:hint="@string/select_car_brand" />
 

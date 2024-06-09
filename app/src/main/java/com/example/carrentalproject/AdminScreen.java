@@ -88,9 +88,8 @@ public class AdminScreen extends AppCompatActivity {
 
                     if (status.equals("success")) {
                         // Credentials are valid, proceed to the next activity
-                        Intent intent = new Intent(AdminScreen.this, MainActivity.class);
+                        Intent intent = new Intent(AdminScreen.this, CarViewScreen.class);
                         startActivity(intent);
-                        finish(); // Finish current activity to prevent user from coming back with back button
                     } else {
                         // Display error message
                         Toast.makeText(AdminScreen.this, message, Toast.LENGTH_SHORT).show();
