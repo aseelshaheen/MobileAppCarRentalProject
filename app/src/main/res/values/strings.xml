@@ -27,4 +27,6 @@
     <string name="enter_id_number">Enter ID Number</string>
     <string name="insert_car">Insert Car</string>
     <string name="update_car_s_details">Update Car\'s Details</string>
+    <string name="add_car">Add Car</string>
+    <string name="delete_car">Delete Car</string>
 </resources>

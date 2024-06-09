@@ -3,6 +3,7 @@ package com.example.carrentalproject;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -34,29 +35,33 @@ public class CarViewScreen extends AppCompatActivity {
     private Spinner spinnerCarBrand;
     private EditText editTextCarModel;
     private RecyclerView rcViewCars;
+
+    private Button btnSearch;
+    private Button btnAdd;
+    private Button btnUpdate;
+    private Button btnDelete;
+
     private List<Car> items = new ArrayList<>();
-    private static final String BASE_URL = "http://10.0.2.2:84/rest2/get_items.php";
+    private static final String BASE_URL = "http://192.168.1.3:80/CarRental/getItems.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_view_screen);
-        rcViewCars.setLayoutManager(new LinearLayoutManager(this));
-        loadItems();
         setupViews();
         populateSpinner();
-
+        loadItems();
     }
 
-    private void setupViews(){
+    private void setupViews() {
         spinnerCarBrand = findViewById(R.id.spinnerCarBrand);
         editTextCarModel = findViewById(R.id.editTextCarModel);
         rcViewCars = findViewById(R.id.rcViewCars);
+        rcViewCars.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void populateSpinner() {
-        Log.d("AddCarScreen", "populateSpinners called");
-
         List<String> carBrands = Arrays.asList(
                 "Toyota", "Honda", "Ford", "BMW", "Audi", "Tesla", "Chevrolet", "Hyundai",
                 "Nissan", "Kia", "Mercedes-Benz", "Volkswagen", "Subaru", "Lexus", "Jeep",
@@ -66,6 +71,7 @@ public class CarViewScreen extends AppCompatActivity {
         carBrandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCarBrand.setAdapter(carBrandAdapter);
     }
+
     private void loadItems() {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, BASE_URL, null,
                 new Response.Listener<JSONArray>() {
@@ -74,15 +80,19 @@ public class CarViewScreen extends AppCompatActivity {
                         try {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject object = response.getJSONObject(i);
-                                String brand = object.getString("brand");
-                                String model = object.getString("model");
+                                String brand = object.getString("carBrand");
+                                String model = object.getString("carModel");
                                 String imageUrl = object.getString("image");
+                                int price = object.getInt("price");
+                                String color = object.getString("color");
+                                String status = object.getString("status");
 
-                                Car car = new Car(brand, model, imageUrl);
+                                Car car = new Car(brand, model, price, color, status, imageUrl);
                                 items.add(car);
                             }
 
-                            CarAdapter adapter = new CarAdapter(CarViewScreen.this, items);
+                            // Set up the adapter
+                            CarDetails adapter = new CarDetails(CarViewScreen.this, items);
                             rcViewCars.setAdapter(adapter);
 
                         } catch (JSONException e) {
@@ -100,4 +110,5 @@ public class CarViewScreen extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(jsonArrayRequest);
     }
+
 }

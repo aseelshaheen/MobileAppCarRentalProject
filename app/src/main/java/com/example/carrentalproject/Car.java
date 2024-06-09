@@ -7,7 +7,7 @@ public class Car {
     private int price;
     private String color;
     private String status;
-    private String imagePath; // Path of the selected image
+    private String imagePath;
 
     public Car(String carBrand, String carModel, int price, String color, String status, String imagePath) {
         this.carBrand = carBrand;
@@ -86,6 +86,10 @@ public class Car {
 
     @Override
     public String toString() {
-        return carBrand  + " " + carModel + " " + price + " " + color + " " + status + " " + imagePath;
+        return "Brand: " + carBrand + "\n" +
+                "Model: " + carModel + "\n" +
+                "Price: " + price + "\n" +
+                "Color: " + color + "\n" +
+                "Status: " + status;
     }
 }

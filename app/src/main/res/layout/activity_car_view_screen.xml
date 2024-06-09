@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btnSearch"
+    android:id="@+id/carView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CarViewScreen">
@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="130dp"
         android:hint="@string/select_car_brand" />
 
     <EditText
@@ -23,26 +23,82 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/spinnerCarBrand"
         android:layout_marginLeft="125dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="120dp"
         android:hint="@string/enter_car_model" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSearch"
         style="@style/CustomButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/editTextCarModel"
         android:layout_marginLeft="159dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="120dp"
         android:text="Search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcViewCars"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="398dp"
+        android:layout_height="307dp"
         android:layout_below="@+id/spinnerCarBrand"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="51dp" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Cars"
+        style="@style/CustomTextStyle"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp"
+        android:layout_marginStart="150dp"
+        />
+
+    <TextView
+        android:id="@+id/adminName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="you are signed in as"
+        style="@style/CustomTextStyle"
+        android:layout_below="@id/txtTitle"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        />
+
+    <Button
+        android:id="@+id/btnAdd"
+        style="@style/CustomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rcViewCars"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="120dp"
+        android:text="@string/add_car" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        style="@style/CustomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rcViewCars"
+        android:layout_alignEnd="@+id/btnAdd"
+
+        android:layout_marginTop="121dp"
+        android:layout_marginEnd="-145dp"
+        android:layout_marginRight="-273dp"
+        android:text="Update Car" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        style="@style/CustomButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rcViewCars"
+        android:layout_alignEnd="@+id/btnUpdate"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="-139dp"
+        android:text="@string/delete_car" />
 
 
 </RelativeLayout>
