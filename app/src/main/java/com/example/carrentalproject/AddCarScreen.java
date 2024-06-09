@@ -62,6 +62,7 @@ public class AddCarScreen extends AppCompatActivity {
     private EditText editTextColor;
     private Button buttonInsertImage;
     private Button buttonInsertCar;
+    private EditText imageName;
     private String imagePath = null;
 
     @Override
@@ -99,11 +100,12 @@ public class AddCarScreen extends AppCompatActivity {
         editTextColor = findViewById(R.id.editTextColor);
         buttonInsertImage = findViewById(R.id.buttonInsertImage);
         buttonInsertCar = findViewById(R.id.buttonInsertCar);
+        imageName = findViewById(R.id.imageName);
 
         // Verify if views are properly initialized
         if (textViewTitle == null || spinnerCarBrand == null || spinnerStatus == null ||
                 editTextCarModel == null || editTextPrice == null || editTextColor == null ||
-                buttonInsertImage == null || buttonInsertCar == null) {
+                buttonInsertImage == null || buttonInsertCar == null || imageName == null) {
             Log.e("AddCarScreen", "One or more views are not properly initialized");
         }
     }
@@ -139,6 +141,8 @@ public class AddCarScreen extends AppCompatActivity {
                     // Handle the selected image URI
                     if (uri != null) {
                         imagePath = getPathFromUri(uri);
+                        String imgName = getImageNameFromUri(uri);
+                        imageName.setText(imgName);
                         Toast.makeText(AddCarScreen.this, "Image selected successfully", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -157,6 +161,19 @@ public class AddCarScreen extends AppCompatActivity {
         return uri.getPath();
     }
 
+    private String getImageNameFromUri(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DISPLAY_NAME};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
+            String imageName = cursor.getString(columnIndex);
+            cursor.close();
+            return imageName;
+        }
+        return null;
+    }
+
     public void addCar() {
         // Get user input and create Car object
         String carModel = editTextCarModel.getText().toString();
@@ -164,6 +181,7 @@ public class AddCarScreen extends AppCompatActivity {
         String color = editTextColor.getText().toString();
         String carBrand = spinnerCarBrand.getSelectedItem().toString();
         String status = spinnerStatus.getSelectedItem().toString();
+        String image = imageName.getText().toString();
 
         String url = "http://192.168.1.3:80/CarRental/AddNewCar.php";
 
@@ -176,6 +194,7 @@ public class AddCarScreen extends AppCompatActivity {
         params.put("price", String.valueOf(price));
         params.put("color", color);
         params.put("status", status);
+        params.put("image", image);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -198,4 +217,5 @@ public class AddCarScreen extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 }
+
 

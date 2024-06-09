@@ -71,7 +71,7 @@ public class CustomerSignUp extends AppCompatActivity {
             return;
         }
 
-        String url = "http://192.168.1.3:80/CarRental/CustomerSignUp.php";
+        String url = "http://192.168.1.3:80/CarRental/CustomerSignup.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

@@ -29,4 +29,6 @@
     <string name="update_car_s_details">Update Car\'s Details</string>
     <string name="add_car">Add Car</string>
     <string name="delete_car">Delete Car</string>
+    <string name="enter_car_id">Enter Car ID To Delete</string>
+    <string name="image_path">Image Path</string>
 </resources>

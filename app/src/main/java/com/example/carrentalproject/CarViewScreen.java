@@ -1,6 +1,8 @@
 package com.example.carrentalproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -44,6 +47,7 @@ public class CarViewScreen extends AppCompatActivity {
     private Button btnAdd;
     private Button btnUpdate;
     private Button btnDelete;
+    private TextView adminName;
 
     private List<Car> items = new ArrayList<>();
     private Car selectedCar = null;
@@ -62,6 +66,7 @@ public class CarViewScreen extends AppCompatActivity {
         setupViews();
         populateSpinner();
         loadItems();
+        displayUsername();
         btnSearch.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -74,11 +79,8 @@ public class CarViewScreen extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedCar != null) {
-                    deleteItem(selectedCar);
-                } else {
-                    Toast.makeText(CarViewScreen.this, "No car selected", Toast.LENGTH_SHORT).show();
-                }
+                Intent intent = new Intent(CarViewScreen.this, InsertIDDelete.class);
+                startActivity(intent);
             }
         });
 
@@ -99,6 +101,7 @@ public class CarViewScreen extends AppCompatActivity {
         btnSearch = findViewById(R.id.btnSearch);
         btnAdd = findViewById(R.id.btnAdd);
         btnDelete = findViewById(R.id.btnDelete);
+        adminName = findViewById(R.id.adminName);
         rcViewCars.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -200,30 +203,10 @@ public class CarViewScreen extends AppCompatActivity {
         Volley.newRequestQueue(this).add(jsonArrayRequest);
     }
 
-    private void deleteItem(Car car) {
-        String url = DELETE_URL + "?id=" + car.getCarID();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (response.equals("success")) {
-                            items.remove(car);
-                            adapter.notifyDataSetChanged();
-                            Toast.makeText(CarViewScreen.this, "Car deleted successfully", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(CarViewScreen.this, "Failed to delete car", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(CarViewScreen.this, "Error deleting car", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        Volley.newRequestQueue(this).add(stringRequest);
+    private void displayUsername() {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "Guest");
+        adminName.setText("You are signed in as " + username);
     }
-
 }
