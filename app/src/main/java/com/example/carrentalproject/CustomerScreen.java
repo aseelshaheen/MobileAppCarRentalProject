@@ -1,6 +1,8 @@
 package com.example.carrentalproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,8 +54,7 @@ public class CustomerScreen extends AppCompatActivity {
         edtTxtPassword = findViewById(R.id.edtTxtPassword);
     }
 
-
-    public void GoToSignUpScreen(){
+    public void GoToSignUpScreen() {
         btnCustomerSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,14 +64,13 @@ public class CustomerScreen extends AppCompatActivity {
         });
     }
 
-
-    public  void loginCustomer(){
-        final String phoneNumber = edtTxtID.getText().toString().trim();
+    public void loginCustomer() {
+        final String idNumber = edtTxtID.getText().toString().trim();
         final String password = edtTxtPassword.getText().toString().trim();
 
-        // Check if the phone number or password fields are empty
-        if (phoneNumber.isEmpty() || password.isEmpty()) {
-            Toast.makeText(CustomerScreen.this, "Please enter both phone number and password", Toast.LENGTH_SHORT).show();
+        // Check if the ID number or password fields are empty
+        if (idNumber.isEmpty() || password.isEmpty()) {
+            Toast.makeText(CustomerScreen.this, "Please enter both ID number and password", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -88,6 +88,9 @@ public class CustomerScreen extends AppCompatActivity {
                     String message = jsonObject.getString("message");
 
                     if (status.equals("success")) {
+                        // Save the username (or ID) in SharedPreferences for future activities
+                        saveUsername(idNumber);
+
                         // Login successful, proceed to the next activity
                         Intent intent = new Intent(CustomerScreen.this, MainActivity.class);
                         startActivity(intent);
@@ -110,14 +113,13 @@ public class CustomerScreen extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Toast.makeText(CustomerScreen.this, "", Toast.LENGTH_SHORT).show();
-            Toast.makeText(CustomerScreen.this, "Error connecting to server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomerScreen.this, "Error connecting to server", Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("phoneNumber", phoneNumber);
+                params.put("idNumber", idNumber);
                 params.put("password", password);
                 return params;
             }
@@ -126,9 +128,13 @@ public class CustomerScreen extends AppCompatActivity {
         // Add the request to the RequestQueue
         RequestQueue requestQueue = Volley.newRequestQueue(CustomerScreen.this);
         requestQueue.add(stringRequest);
-
     }
 
-
-
+    private void saveUsername(String idNumber) {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("firstName", idNumber);
+        editor.apply();
+    }
 }
+

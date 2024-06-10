@@ -33,7 +33,9 @@ public class CustomerSignUp extends AppCompatActivity {
     private EditText edtTxtPhoneNum;
     private EditText edtTxtEmail;
     private EditText edtTxtPassword;
+    private EditText edtTxtIDNumber;
     private Button btnCustomerSignUp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,6 @@ public class CustomerSignUp extends AppCompatActivity {
                 signupCustomer();
             }
         });
-
     }
 
     private void setupViews() {
@@ -56,9 +57,11 @@ public class CustomerSignUp extends AppCompatActivity {
         edtTxtEmail = findViewById(R.id.adminemail);
         edtTxtPassword = findViewById(R.id.edtTxtPassword);
         btnCustomerSignUp = findViewById(R.id.btncustomerSignUp);
+        edtTxtIDNumber = findViewById(R.id.IDNumber);
     }
 
-    public void signupCustomer(){
+    public void signupCustomer() {
+        final String id = edtTxtIDNumber.getText().toString().trim();
         final String firstName = edtTxtFirstName.getText().toString().trim();
         final String lastName = edtTxtLastName.getText().toString().trim();
         final String phoneNumber = edtTxtPhoneNum.getText().toString().trim();
@@ -66,10 +69,13 @@ public class CustomerSignUp extends AppCompatActivity {
         final String password = edtTxtPassword.getText().toString().trim();
 
         // Check if any field is empty
-        if (firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (id.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(CustomerSignUp.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // Create Customer object
+        Customer customer = new Customer(Integer.parseInt(id), firstName, lastName, email, phoneNumber, password, "");
 
         String url = "http://192.168.1.3:80/CarRental/CustomerSignup.php";
 
@@ -104,11 +110,12 @@ public class CustomerSignUp extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("firstName", firstName);
-                params.put("lastName", lastName);
-                params.put("phoneNumber", phoneNumber);
-                params.put("email", email);
-                params.put("password", password);
+                params.put("idNumber", String.valueOf(customer.getIdNumber()));
+                params.put("firstName", customer.getFirstName());
+                params.put("lastName", customer.getLastName());
+                params.put("phoneNumber", customer.getPhoneNumber());
+                params.put("email", customer.getEmail());
+                params.put("password", customer.getPassword());
                 return params;
             }
         };

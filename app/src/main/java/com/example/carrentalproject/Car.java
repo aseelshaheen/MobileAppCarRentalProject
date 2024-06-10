@@ -86,7 +86,8 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Brand: " + carBrand + "\n" +
+        return  "Car ID: "+carID +"\n"+
+                "Brand: " + carBrand + "\n" +
                 "Model: " + carModel + "\n" +
                 "Price: " + price + "\n" +
                 "Color: " + color + "\n" +

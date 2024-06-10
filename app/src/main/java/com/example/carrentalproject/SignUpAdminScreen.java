@@ -64,10 +64,12 @@ public class SignUpAdminScreen extends AppCompatActivity {
 
         // Check if any field is empty
         if (usernameStr.isEmpty() || emailStr.isEmpty() || passwordStr.isEmpty()) {
-            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-            Toast.makeText(SignUpAdminScreen.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // Create Admin object
+        Admin admin = new Admin(usernameStr, passwordStr, emailStr);
 
         String url = "http://192.168.1.3:80/CarRental/AdminSignUp.php";
 
@@ -102,9 +104,9 @@ public class SignUpAdminScreen extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("username", usernameStr);
-                params.put("email", emailStr);
-                params.put("password", passwordStr);
+                params.put("username", admin.getUsername());
+                params.put("email", admin.getEmail());
+                params.put("password", admin.getPassword());
                 return params;
             }
         };
