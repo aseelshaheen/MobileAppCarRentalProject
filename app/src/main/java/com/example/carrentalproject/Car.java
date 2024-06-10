@@ -18,6 +18,16 @@ public class Car {
         this.imagePath = imagePath;
     }
 
+    public Car(int carID, String carBrand, String carModel, int price, String color, String status, String imagePath) {
+        this.carID = carID;
+        this.carBrand = carBrand;
+        this.carModel = carModel;
+        this.price = price;
+        this.color = color;
+        this.status = status;
+        this.imagePath = imagePath;
+    }
+
     public Car(){
 
     }
@@ -27,6 +37,7 @@ public class Car {
         this.carModel = carModel;
         this.imagePath = imagePath;
     }
+
 
     public String getCarBrand() {
         return carBrand;

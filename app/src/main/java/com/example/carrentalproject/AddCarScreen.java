@@ -217,5 +217,3 @@ public class AddCarScreen extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 }
-
-

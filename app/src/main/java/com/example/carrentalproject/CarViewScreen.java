@@ -50,10 +50,8 @@ public class CarViewScreen extends AppCompatActivity {
     private TextView adminName;
 
     private List<Car> items = new ArrayList<>();
-    private Car selectedCar = null;
     private static final String BASE_URL = "http://192.168.1.3:80/CarRental/getItems.php";
     private static final String BASE_URL_FILTER = "http://192.168.1.3:80/CarRental/ApplyFilter.php";
-    private static final String DELETE_URL = "http://192.168.1.3:80/CarRental/DeleteCar.php";
     private CarDetails adapter;
 
 
@@ -124,6 +122,7 @@ public class CarViewScreen extends AppCompatActivity {
                         try {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject object = response.getJSONObject(i);
+                                int carID = object.getInt("carID");
                                 String brand = object.getString("carBrand");
                                 String model = object.getString("carModel");
                                 String imageUrl = object.getString("image");
@@ -131,7 +130,7 @@ public class CarViewScreen extends AppCompatActivity {
                                 String color = object.getString("color");
                                 String status = object.getString("status");
 
-                                Car car = new Car(brand, model, price, color, status, imageUrl);
+                                Car car = new Car(carID,brand, model, price, color, status, imageUrl);
                                 items.add(car);
                             }
 

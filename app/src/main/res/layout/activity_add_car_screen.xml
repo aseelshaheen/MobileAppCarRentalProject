@@ -74,6 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/spinnerStatus"
         android:layout_marginTop="35dp"
+        style="@style/CustomButton"
         android:text="@string/insert_image" />
 
     <EditText
@@ -93,6 +94,7 @@
         android:layout_below="@id/buttonInsertImage"
         android:layout_marginStart="100dp"
         android:layout_marginTop="27dp"
+        style="@style/CustomButton"
         android:text="@string/insert_car" />
 
 </RelativeLayout>

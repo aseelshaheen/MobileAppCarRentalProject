@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="170dp"
         android:hint="@string/select_car_brand" />
 
     <EditText
@@ -22,8 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/spinnerCarBrand"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="160dp"
         android:hint="@string/enter_car_model" />
 
     <Button
@@ -31,24 +31,23 @@
         style="@style/CustomButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/editTextCarModel"
-        android:layout_marginLeft="159dp"
-        android:layout_marginTop="120dp"
-        android:text="Apply Filter
-" />
+        android:layout_below="@+id/editTextCarModel"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="4dp"
+        android:text="Apply Filter" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcViewCars"
         android:layout_width="398dp"
         android:layout_height="307dp"
-        android:layout_below="@+id/spinnerCarBrand"
+        android:layout_below="@+id/btnSearch"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="51dp" />
+        android:layout_marginTop="50dp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/logo" />
 
@@ -59,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="30dp"
         android:text="you are signed in as" />
 
     <Button
@@ -69,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rcViewCars"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="81dp"
+        android:layout_marginTop="50dp"
         android:text="@string/add_car" />
 
     <Button
@@ -80,8 +79,8 @@
         android:layout_below="@id/rcViewCars"
         android:layout_alignEnd="@+id/btnAdd"
 
-        android:layout_marginTop="78dp"
-        android:layout_marginEnd="-145dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="-141dp"
         android:layout_marginRight="-273dp"
         android:text="Update Car" />
 
@@ -92,8 +91,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rcViewCars"
         android:layout_alignEnd="@+id/btnUpdate"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="-137dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="-141dp"
         android:text="@string/delete_car" />
 
 
