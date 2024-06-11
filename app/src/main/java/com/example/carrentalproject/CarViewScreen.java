@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,9 +69,8 @@ public class CarViewScreen extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String brand = spinnerCarBrand.getSelectedItem().toString();
-                String model = editTextCarModel.getText().toString();
-                loadFilteredItems(brand, model);
+                String brand = spinnerCarBrand.getSelectedItem().toString().trim();
+                loadFilteredItems(brand);
             }
         });
 
@@ -89,6 +89,7 @@ public class CarViewScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
     }
 
@@ -134,7 +135,6 @@ public class CarViewScreen extends AppCompatActivity {
                                 items.add(car);
                             }
 
-                            // Set up the adapter
                             CarDetails adapter = new CarDetails(CarViewScreen.this, items);
                             rcViewCars.setAdapter(adapter);
 
@@ -154,30 +154,33 @@ public class CarViewScreen extends AppCompatActivity {
         Volley.newRequestQueue(this).add(jsonArrayRequest);
     }
 
-    private void loadFilteredItems(String brand, String model) {
-        // Construct the URL with query parameters for filtering
+    private void loadFilteredItems(String brand) {
+
         Uri.Builder builder = Uri.parse(BASE_URL_FILTER).buildUpon();
         if (brand != null && !brand.isEmpty()) {
             builder.appendQueryParameter("brand", brand);
         }
-        if (model != null && !model.isEmpty()) {
-            builder.appendQueryParameter("model", model);
-        }
         String url = builder.toString();
+
+        Log.d("CarViewScreen", "Request URL: " + url);
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
-                            items.clear(); // Clear the previous items
+                            items.clear(); // clear the previous items
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject object = response.getJSONObject(i);
+                                int carID = object.getInt("carID");
                                 String brand = object.getString("carBrand");
                                 String model = object.getString("carModel");
                                 String imageUrl = object.getString("image");
+                                int price = object.getInt("price");
+                                String color = object.getString("color");
+                                String status = object.getString("status");
 
-                                Car car = new Car(brand, model, imageUrl);
+                                Car car = new Car(carID, brand, model, price, color, status, imageUrl);
                                 items.add(car);
                             }
 
@@ -195,12 +198,14 @@ public class CarViewScreen extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.e("CarViewScreen", "Error: " + error.toString());
                         Toast.makeText(CarViewScreen.this, "Error loading data", Toast.LENGTH_SHORT).show();
                     }
                 });
 
         Volley.newRequestQueue(this).add(jsonArrayRequest);
     }
+
 
 
     private void displayUsername() {

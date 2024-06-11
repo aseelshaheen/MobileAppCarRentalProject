@@ -69,7 +69,6 @@ public class AdminScreen extends AppCompatActivity {
         final String username = edtTxtUsername.getText().toString().trim();
         final String password = edtTxtPassword.getText().toString().trim();
 
-        // Check if the username or password fields are empty
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(AdminScreen.this, "Please enter both username and password", Toast.LENGTH_SHORT).show();
             return;
@@ -77,32 +76,26 @@ public class AdminScreen extends AppCompatActivity {
 
         String url = "http://192.168.1.3:80/CarRental/AdminLogin.php";
 
-        Log.d("AdminLogin", "URL: " + url);  // Log the URL for debugging
+        Log.d("AdminLogin", "URL: " + url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("AdminLogin", "Response: " + response);  // Log the response for debugging
+                Log.d("AdminLogin", "Response: " + response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String status = jsonObject.getString("status");
                     String message = jsonObject.getString("message");
 
                     if (status.equals("success")) {
-                        // Save username in SharedPreferences
                         saveUsername(username);
 
-                        // Credentials are valid, proceed to the next activity
                         Intent intent = new Intent(AdminScreen.this, CarViewScreen.class);
                         startActivity(intent);
-                        finish();  // Optional: close the current activity
                     } else {
-                        // Display error message
                         Toast.makeText(AdminScreen.this, message, Toast.LENGTH_SHORT).show();
-                        if (message.contains("Please sign up")) {
-                            Intent intent = new Intent(AdminScreen.this, SignUpAdminScreen.class);
-                            startActivity(intent);
-                        }
+                        message.contains("Username or password is incorrect,please try again or Sign up");
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -125,7 +118,6 @@ public class AdminScreen extends AppCompatActivity {
             }
         };
 
-        // Add the request to the RequestQueue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

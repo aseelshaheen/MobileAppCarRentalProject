@@ -32,15 +32,8 @@ public class CarDetails extends RecyclerView.Adapter<CarDetails.ViewHolder> {
         String carDetails = car.toString();
         holder.txtCarDetails.setText(carDetails);
 
-        // Load image using Glide
         Glide.with(context).load("http://192.168.1.3/CarRental/images/" + car.getImagePath()).into(holder.imageView);
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Handle item click if needed
-            }
-        });
     }
 
     @Override

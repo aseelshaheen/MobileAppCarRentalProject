@@ -14,26 +14,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="100dp"
         android:hint="@string/select_car_brand" />
 
-    <EditText
-        android:id="@+id/editTextCarModel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/spinnerCarBrand"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="160dp"
-        android:hint="@string/enter_car_model" />
 
     <Button
         android:id="@+id/btnSearch"
         style="@style/CustomButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextCarModel"
-        android:layout_marginLeft="250dp"
-        android:layout_marginTop="4dp"
+        android:layout_alignRight="@+id/spinnerCarBrand"
+        android:layout_marginLeft="259dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="-245dp"
         android:text="Apply Filter" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -58,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:text="you are signed in as" />
 
     <Button

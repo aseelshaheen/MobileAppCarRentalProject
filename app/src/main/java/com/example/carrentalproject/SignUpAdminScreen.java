@@ -40,7 +40,6 @@ public class SignUpAdminScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_admin_screen);
 
-        // Call setupView to initialize the UI components
         setupView();
         btnAdminSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,13 +61,10 @@ public class SignUpAdminScreen extends AppCompatActivity {
         final String emailStr = adminemail.getText().toString().trim();
         final String passwordStr = edtTxtPassword.getText().toString().trim();
 
-        // Check if any field is empty
         if (usernameStr.isEmpty() || emailStr.isEmpty() || passwordStr.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        // Create Admin object
         Admin admin = new Admin(usernameStr, passwordStr, emailStr);
 
         String url = "http://192.168.1.3:80/CarRental/AdminSignUp.php";
@@ -84,7 +80,7 @@ public class SignUpAdminScreen extends AppCompatActivity {
                     Toast.makeText(SignUpAdminScreen.this, message, Toast.LENGTH_SHORT).show();
 
                     if (status.equals("success")) {
-                        // Registration successful, navigate to login screen or main activity
+
                         Intent intent = new Intent(SignUpAdminScreen.this, AdminScreen.class);
                         startActivity(intent);
                         finish();
@@ -110,8 +106,6 @@ public class SignUpAdminScreen extends AppCompatActivity {
                 return params;
             }
         };
-
-        // Add the request to the RequestQueue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

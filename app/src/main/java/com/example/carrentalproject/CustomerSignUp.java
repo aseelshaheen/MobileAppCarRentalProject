@@ -68,13 +68,10 @@ public class CustomerSignUp extends AppCompatActivity {
         final String email = edtTxtEmail.getText().toString().trim();
         final String password = edtTxtPassword.getText().toString().trim();
 
-        // Check if any field is empty
         if (id.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(CustomerSignUp.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        // Create Customer object
         Customer customer = new Customer(Integer.parseInt(id), firstName, lastName, email, phoneNumber, password, "");
 
         String url = "http://192.168.1.3:80/CarRental/CustomerSignup.php";
@@ -90,7 +87,6 @@ public class CustomerSignUp extends AppCompatActivity {
                     Toast.makeText(CustomerSignUp.this, message, Toast.LENGTH_SHORT).show();
 
                     if (status.equals("success")) {
-                        // Registration successful, navigate to login screen or main activity
                         Intent intent = new Intent(CustomerSignUp.this, CustomerScreen.class);
                         startActivity(intent);
                         finish();
@@ -120,7 +116,6 @@ public class CustomerSignUp extends AppCompatActivity {
             }
         };
 
-        // Add the request to the RequestQueue
         RequestQueue requestQueue = Volley.newRequestQueue(CustomerSignUp.this);
         requestQueue.add(stringRequest);
     }

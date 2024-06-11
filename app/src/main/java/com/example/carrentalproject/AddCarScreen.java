@@ -102,7 +102,7 @@ public class AddCarScreen extends AppCompatActivity {
         buttonInsertCar = findViewById(R.id.buttonInsertCar);
         imageName = findViewById(R.id.imageName);
 
-        // Verify if views are properly initialized
+
         if (textViewTitle == null || spinnerCarBrand == null || spinnerStatus == null ||
                 editTextCarModel == null || editTextPrice == null || editTextColor == null ||
                 buttonInsertImage == null || buttonInsertCar == null || imageName == null) {
@@ -138,7 +138,6 @@ public class AddCarScreen extends AppCompatActivity {
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
-                    // Handle the selected image URI
                     if (uri != null) {
                         imagePath = getPathFromUri(uri);
                         String imgName = getImageNameFromUri(uri);
@@ -175,7 +174,6 @@ public class AddCarScreen extends AppCompatActivity {
     }
 
     public void addCar() {
-        // Get user input and create Car object
         String carModel = editTextCarModel.getText().toString();
         int price = Integer.parseInt(editTextPrice.getText().toString().trim());
         String color = editTextColor.getText().toString();

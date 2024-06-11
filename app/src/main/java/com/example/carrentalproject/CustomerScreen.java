@@ -68,7 +68,6 @@ public class CustomerScreen extends AppCompatActivity {
         final String idNumber = edtTxtID.getText().toString().trim();
         final String password = edtTxtPassword.getText().toString().trim();
 
-        // Check if the ID number or password fields are empty
         if (idNumber.isEmpty() || password.isEmpty()) {
             Toast.makeText(CustomerScreen.this, "Please enter both ID number and password", Toast.LENGTH_SHORT).show();
             return;
@@ -76,30 +75,26 @@ public class CustomerScreen extends AppCompatActivity {
 
         String url = "http://192.168.1.3:80/CarRental/CustomerLogin.php";
 
-        Log.d("CustomerLogin", "URL: " + url);  // Log the URL for debugging
+        Log.d("CustomerLogin", "URL: " + url);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("CustomerLogin", "Response: " + response);  // Log the response for debugging
+                Log.d("CustomerLogin", "Response: " + response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String status = jsonObject.getString("status");
                     String message = jsonObject.getString("message");
 
                     if (status.equals("success")) {
-                        // Save the username (or ID) in SharedPreferences for future activities
+
                         saveUsername(idNumber);
 
-                        // Login successful, proceed to the next activity
                         Intent intent = new Intent(CustomerScreen.this, MainActivity.class);
                         startActivity(intent);
-                        finish(); // Finish current activity to prevent user from coming back with back button
                     } else {
-                        // Display error message
                         Toast.makeText(CustomerScreen.this, message, Toast.LENGTH_SHORT).show();
                         if (message.contains("Please sign up")) {
-                            // Navigate to sign up activity if user needs to sign up
                             Intent intent = new Intent(CustomerScreen.this, CustomerSignUp.class);
                             startActivity(intent);
                         }
@@ -125,7 +120,6 @@ public class CustomerScreen extends AppCompatActivity {
             }
         };
 
-        // Add the request to the RequestQueue
         RequestQueue requestQueue = Volley.newRequestQueue(CustomerScreen.this);
         requestQueue.add(stringRequest);
     }
